@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-crimson: #DC143C;
+  --color-crimson-dark: #8B0000;
+  --color-crimson-medium: #B22222;
+  --color-obsidian: #1A1A1A;
+  --color-obsidian-dark: #0A0A0A;
+  --color-obsidian-light: #2A2A2A;
+  --color-soul-brown: #5C4033;
+  --color-soul-tan: #8B7355;
+  --color-ember: #FF4500;
+  --color-ember-light: #FF6347;
+  --color-ember-bright: #FFA500;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-obsidian-dark);
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@layer utilities {
+  .text-glow-crimson {
+    text-shadow: 0 0 10px #DC143C, 0 0 20px #DC143C;
+  }
+
+  .text-glow-ember {
+    text-shadow: 0 0 10px #FF4500, 0 0 20px #FF4500;
+  }
+
+  .border-glow-crimson {
+    box-shadow: 0 0 10px #DC143C, inset 0 0 10px rgba(220, 20, 60, 0.1);
+  }
+
+  .border-glow-ember {
+    box-shadow: 0 0 10px #FF4500, inset 0 0 10px rgba(255, 69, 0, 0.1);
+  }
+
+  .bg-nether-gradient {
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A0A0A 50%, #0A0A0A 100%);
+  }
+
+  .skull-bullet li::before {
+    content: "💀";
+    margin-right: 0.5rem;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 15px #FF4500, 0 0 30px rgba(255, 69, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DC143C;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF4500;
+}
