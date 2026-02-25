@@ -25,7 +25,7 @@ export function DeepDiveSection({ content, imageLeft = false }: DeepDiveSectionP
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: '0px 0px -30px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();

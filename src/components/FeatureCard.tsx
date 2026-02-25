@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import type { LucideIcon } from 'lucide-react';
-import { observeElement } from '../utils/animations';
 
 interface FeatureCardProps {
   icon: LucideIcon;
@@ -13,14 +12,27 @@ export function FeatureCard({ icon: Icon, title, description, delay = 0 }: Featu
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!cardRef.current) return;
-    cardRef.current.style.opacity = '0';
-    cardRef.current.style.transform = 'translateY(20px)';
     const el = cardRef.current;
+    if (!el) return;
+
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+
     const timer = setTimeout(() => {
-      const cleanup = observeElement(el, 'is-visible');
-      return cleanup;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+            observer.unobserve(el);
+          }
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
     }, delay);
+
     return () => clearTimeout(timer);
   }, [delay]);
 
